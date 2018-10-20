@@ -1,0 +1,11 @@
+Source: maratona-casper
+Section: misc
+Priority: optional
+Maintainer: Bruno Ribas <brunoribas@gmail.com>
+Build-Depends: debhelper
+
+Package: maratona-casper
+Architecture: all
+Pre-Depends: casper
+Depends: maratona-desktop
+Description: casper configuration

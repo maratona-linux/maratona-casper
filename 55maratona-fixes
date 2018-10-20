@@ -1,0 +1,36 @@
+#! /bin/sh
+
+PREREQ=""
+DESCRIPTION="Maratona fixes..."
+
+prereqs()
+{
+       echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+       prereqs
+       exit 0
+       ;;
+esac
+
+. /scripts/casper-functions
+
+log_begin_msg "$DESCRIPTION"
+
+#make snap work after reboot
+rm -rf /cow/upper/var/lib/snapd
+
+#make sure there is something in icpc home
+if [[ ! -d ${rootmnt}/home/icpc ]]; then
+  mkdir -p ${rootmnt}/home/icpc
+  touch ${rootmnt}/home/icpc/.clean-home
+fi
+
+if [[ ! -d ${rootmnt}/home/latam-admin ]]; then
+  cp -a /rofs/home/latam-admin ${rootmnt}/home/
+fi
+
+log_end_msg

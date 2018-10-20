@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+#Disable some hooks that are not good for maratona-linux
+for file in 55disable_snap_refresh 15autologin 18hostname 44pk_allow_ubuntu 25adduser; do
+  chmod a-x /usr/share/initramfs-tools/scripts/casper-bottom/$file
+done
+
+exit 0

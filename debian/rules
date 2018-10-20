@@ -1,0 +1,11 @@
+#! /usr/bin/make -f
+
+override_dh_auto_install:
+
+	mkdir -p debian/maratona-casper/usr/share/initramfs-tools/scripts/casper-bottom
+	cp -r 55maratona-fixes debian/maratona-casper/usr/share/initramfs-tools/scripts/casper-bottom
+	chmod a+x debian/maratona-casper/usr/share/initramfs-tools/scripts/casper-bottom/55maratona-fixes
+
+%:
+	echo "$@"
+	dh $@
