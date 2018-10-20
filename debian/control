@@ -7,5 +7,5 @@ Build-Depends: debhelper
 Package: maratona-casper
 Architecture: all
 Pre-Depends: casper
-Depends: maratona-desktop
+Depends: maratona-desktop | boca-web | boca-autojudge
 Description: casper configuration
