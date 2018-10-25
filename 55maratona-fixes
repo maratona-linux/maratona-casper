@@ -30,7 +30,14 @@ if [[ ! -d ${rootmnt}/home/icpc ]]; then
 fi
 
 if [[ ! -d ${rootmnt}/home/latam-admin ]]; then
-  cp -a /rofs/home/latam-admin ${rootmnt}/home/
+  cp -a ${rootmnt}/rofs/home/latam-admin ${rootmnt}/home/
+fi
+
+if grep -q "factoryreset" /proc/cmdline; then
+  rm -rf /cow/*
+  rm -rf /home/*
+  reboot
+  while :; do sleep 60; done
 fi
 
 log_end_msg
