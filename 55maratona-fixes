@@ -1,4 +1,5 @@
 #! /bin/sh
+# This script is distributed with Maratona Linux under the terms of GPLv2
 
 PREREQ=""
 DESCRIPTION="Maratona fixes..."
@@ -34,10 +35,46 @@ if [[ ! -d ${rootmnt}/home/latam-admin ]]; then
 fi
 
 if grep -q "factoryreset" /proc/cmdline; then
-  rm -rf /cow/*
-  rm -rf /home/*
+  for i in dev dev/pts sys proc; do
+    mount --bind /$i ${rootmnt}/$i
+  done
+  chroot ${rootmnt} bash /usr/share/maratona-casper/ml-factoryreset.sh
+  RET=$?
+  if [[ "$RET" == "0" ]]; then
+    echo "Removing files..."
+    rm -rf /cow/*
+    rm -rf /home/*
+    sleep 1
+  fi
   reboot
   while :; do sleep 60; done
 fi
 
+if grep -q "mlinstall" /proc/cmdline; then
+  for i in dev dev/pts sys proc; do
+    mount --bind /$i ${rootmnt}/$i
+  done
+  chroot ${rootmnt} bash /usr/share/maratona-casper/ml-install.sh
+  echo "Please remove Install Media and press ENTER"
+  echo "Please remove Install Media and press ENTER"
+  echo "Please remove Install Media and press ENTER"
+  echo "Please remove Install Media and press ENTER"
+  echo "Please remove Install Media and press ENTER"
+  echo "Please remove Install Media and press ENTER"
+  echo "Please remove Install Media and press ENTER"
+  echo "Please remove Install Media and press ENTER"
+  echo "Please remove Install Media and press ENTER"
+  echo "Please remove Install Media and press ENTER"
+  read
+  reboot
+  while :; do sleep 60; done
+fi
+
+if grep -q "mlshell" /proc/cmdline; then
+  sh
+  echo "Please remove Install Media and press ENTER"
+  read
+  reboot
+  while :; do sleep 60; done
+fi
 log_end_msg
