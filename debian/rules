@@ -5,6 +5,10 @@ override_dh_auto_install:
 	mkdir -p debian/maratona-casper/usr/share/initramfs-tools/scripts/casper-bottom
 	cp -r 55maratona-fixes debian/maratona-casper/usr/share/initramfs-tools/scripts/casper-bottom
 	chmod a+x debian/maratona-casper/usr/share/initramfs-tools/scripts/casper-bottom/55maratona-fixes
+	mkdir -p debian/maratona-casper/usr/share/maratona-casper
+	cp ml-factoryreset.sh debian/maratona-casper/usr/share/maratona-casper
+	cp ml-install.sh debian/maratona-casper/usr/share/maratona-casper
+	chmod a+x debian/maratona-casper/usr/share/maratona-casper/*sh
 
 %:
 	echo "$@"
