@@ -43,7 +43,7 @@ if grep -q "factoryreset" /proc/cmdline; then
   if [[ "$RET" == "0" ]]; then
     echo "Removing files..."
     rm -rf /cow/*
-    rm -rf /home/*
+    rm -rf ${rootmnt}/home/*
     sleep 1
   fi
   reboot
